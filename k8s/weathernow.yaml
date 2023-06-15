@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: weathernow
+  name: weathernow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weathernow
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: weathernow
+    spec:
+      containers:
+      - image: weathernow:1.0
+        name: weathernow
+        ports:
+        - containerPort: 5000
+        resources: {}
+status: {}
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: weathernow      
+  name: weathernow       
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP        
+    targetPort: 5000
+    nodePort: 32320     
+  selector:
+    app: weathernow      
+  type: NodePort
+status:
+  loadBalancer: {}

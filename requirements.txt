@@ -1,0 +1,5 @@
+flask
+openai
+redis
+requests
+python-dotenv
